@@ -1,0 +1,15 @@
+Package: WES.1KG.WUGSC
+Type: Package
+Title: Whole Exome Sequencing (WES) of chromosome 22 401st to 500th
+        exon from the 1000 Genomes (1KG) Project by the Washington
+        University Genome Sequencing Center (WUGSC).
+Version: 0.99.2
+Date: 2014-12-06
+Author: Yuchao Jiang, Nancy R. Zhang
+Maintainer: Yuchao Jiang <yuchaoj@wharton.upenn.edu>
+Description: The assembled .bam files of whole exome sequencing data
+        from the 1000 Genomes Project. 46 samples sequenced by the
+        Washington University Genome Sequencing Center are included.
+biocViews: ExperimentData, Project1000genomes, SequencingData,
+        DNASeqData, Homo_sapiens_Data
+License: GPL-2

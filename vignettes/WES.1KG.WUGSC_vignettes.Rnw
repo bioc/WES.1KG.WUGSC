@@ -1,0 +1,129 @@
+\documentclass{article}
+\usepackage{amsmath}
+\usepackage{float}
+\usepackage{amscd}
+\usepackage[tableposition=top]{caption}
+\usepackage{ifthen}
+\usepackage[utf8]{inputenc}
+%\VignetteIndexEntry{Using CODEX}
+\begin{document}
+\SweaveOpts{concordance=TRUE}
+\title{WES.1KG.WUGSC vignette}
+\author{Yuchao Jiang
+    \\
+    yuchaoj@wharton.upenn.edu}
+\maketitle
+The dataset consists of assembled .bam files of whole exome sequencing (WES)
+data from the 1000 Genomes Project. 46 samples sequenced by the Washington
+University Genome Sequencing Center (WUGSC) are included. The 401st-500th exons
+from chromosome 22 of each sample are pre-extracted, sorted, indexed, and saved
+as .bam files for illustration purposes.
+\begin{table}[h]
+\begin{tabular}{|l|l|l|l|}
+\hline
+\textbf{Sample ID} & \textbf{Bam name}                                  
+& \textbf{Population} & \textbf{Gender} \\ \hline
+NA06994            & NA06994.mapped.ILLUMINA.bwa.CEU.exome.20120522.bam & CEU   
+& male            \\ \hline
+NA10847            & NA10847.mapped.ILLUMINA.bwa.CEU.exome.20121211.bam & CEU   
+& female          \\ \hline
+NA11840            & NA11840.mapped.ILLUMINA.bwa.CEU.exome.20120522.bam & CEU   
+& female          \\ \hline
+NA12249            & NA12249.mapped.ILLUMINA.bwa.CEU.exome.20120522.bam & CEU   
+& female          \\ \hline
+NA12716            & NA12716.mapped.ILLUMINA.bwa.CEU.exome.20121211.bam & CEU   
+& male            \\ \hline
+NA12750            & NA12750.mapped.ILLUMINA.bwa.CEU.exome.20130415.bam & CEU   
+& male            \\ \hline
+NA12751            & NA12751.mapped.ILLUMINA.bwa.CEU.exome.20121211.bam & CEU   
+& female          \\ \hline
+NA12760            & NA12760.mapped.ILLUMINA.bwa.CEU.exome.20120522.bam & CEU   
+& male            \\ \hline
+NA12761            & NA12761.mapped.ILLUMINA.bwa.CEU.exome.20121211.bam & CEU   
+& female          \\ \hline
+NA12763            & NA12763.mapped.ILLUMINA.bwa.CEU.exome.20121211.bam & CEU   
+& female          \\ \hline
+NA18966            & NA18966.mapped.ILLUMINA.bwa.JPT.exome.20121211.bam & JPT   
+& male            \\ \hline
+NA18967            & NA18967.mapped.ILLUMINA.bwa.JPT.exome.20121211.bam & JPT   
+& male            \\ \hline
+NA18968            & NA18968.mapped.ILLUMINA.bwa.JPT.exome.20120522.bam & JPT   
+& female          \\ \hline
+NA18969            & NA18969.mapped.ILLUMINA.bwa.JPT.exome.20120522.bam & JPT   
+& female          \\ \hline
+NA18970            & NA18970.mapped.ILLUMINA.bwa.JPT.exome.20120522.bam & JPT   
+& male            \\ \hline
+NA18971            & NA18971.mapped.ILLUMINA.bwa.JPT.exome.20120522.bam & JPT   
+& male            \\ \hline
+NA18972            & NA18972.mapped.ILLUMINA.bwa.JPT.exome.20121211.bam & JPT   
+& female          \\ \hline
+NA18973            & NA18973.mapped.ILLUMINA.bwa.JPT.exome.20121211.bam & JPT   
+& female          \\ \hline
+NA18974            & NA18974.mapped.ILLUMINA.bwa.JPT.exome.20120522.bam & JPT   
+& male            \\ \hline
+NA18975            & NA18975.mapped.ILLUMINA.bwa.JPT.exome.20120522.bam & JPT   
+& female          \\ \hline
+NA18976            & NA18976.mapped.ILLUMINA.bwa.JPT.exome.20120522.bam & JPT   
+& female          \\ \hline
+NA18981            & NA18981.mapped.ILLUMINA.bwa.JPT.exome.20120522.bam & JPT   
+& female          \\ \hline
+NA18987            & NA18987.mapped.ILLUMINA.bwa.JPT.exome.20120522.bam & JPT   
+& female          \\ \hline
+NA18990            & NA18990.mapped.ILLUMINA.bwa.JPT.exome.20120522.bam & JPT   
+& male            \\ \hline
+NA18991            & NA18991.mapped.ILLUMINA.bwa.JPT.exome.20120522.bam & JPT   
+& female          \\ \hline
+NA19098            & NA19098.mapped.ILLUMINA.bwa.YRI.exome.20121211.bam & YRI   
+& male            \\ \hline
+NA19119            & NA19119.mapped.ILLUMINA.bwa.YRI.exome.20120522.bam & YRI   
+& male            \\ \hline
+NA19131            & NA19131.mapped.ILLUMINA.bwa.YRI.exome.20120522.bam & YRI   
+& female          \\ \hline
+NA19137            & NA19137.mapped.ILLUMINA.bwa.YRI.exome.20130415.bam & YRI   
+& female          \\ \hline
+NA19138            & NA19138.mapped.ILLUMINA.bwa.YRI.exome.20121211.bam & YRI   
+& male            \\ \hline
+NA19141            & NA19141.mapped.ILLUMINA.bwa.YRI.exome.20120522.bam & YRI   
+& male            \\ \hline
+NA19143            & NA19143.mapped.ILLUMINA.bwa.YRI.exome.20120522.bam & YRI   
+& female          \\ \hline
+NA19144            & NA19144.mapped.ILLUMINA.bwa.YRI.exome.20121211.bam & YRI   
+& male            \\ \hline
+NA19152            & NA19152.mapped.ILLUMINA.bwa.YRI.exome.20120522.bam & YRI   
+& female          \\ \hline
+NA19153            & NA19153.mapped.ILLUMINA.bwa.YRI.exome.20121211.bam & YRI   
+& male            \\ \hline
+NA19159            & NA19159.mapped.ILLUMINA.bwa.YRI.exome.20121211.bam & YRI   
+& female          \\ \hline
+NA19160            & NA19160.mapped.ILLUMINA.bwa.YRI.exome.20120522.bam & YRI   
+& male            \\ \hline
+NA19171            & NA19171.mapped.ILLUMINA.bwa.YRI.exome.20120522.bam & YRI   
+& male            \\ \hline
+NA19200            & NA19200.mapped.ILLUMINA.bwa.YRI.exome.20120522.bam & YRI   
+& male            \\ \hline
+NA19201            & NA19201.mapped.ILLUMINA.bwa.YRI.exome.20121211.bam & YRI   
+& female          \\ \hline
+NA19204            & NA19204.mapped.ILLUMINA.bwa.YRI.exome.20120522.bam & YRI   
+& female          \\ \hline
+NA19206            & NA19206.mapped.ILLUMINA.bwa.YRI.exome.20121211.bam & YRI   
+& female          \\ \hline
+NA19207            & NA19207.mapped.ILLUMINA.bwa.YRI.exome.20121211.bam & YRI   
+& male            \\ \hline
+NA19209            & NA19209.mapped.ILLUMINA.bwa.YRI.exome.20121211.bam & YRI   
+& female          \\ \hline
+NA19210            & NA19210.mapped.ILLUMINA.bwa.YRI.exome.20121211.bam & YRI   
+& male            \\ \hline
+NA19223            & NA19223.mapped.ILLUMINA.bwa.YRI.exome.20120522.bam & YRI   
+& male            \\ \hline
+\end{tabular}
+\end{table}
+\begin{thebibliography}{10}
+\providecommand{\url}[1]{[#1]}
+\providecommand{\urlprefix}{}
+\bibitem{1000-Genomes}
+Genomes Project, C., Abecasis, G.R., Altshuler, D., Auton, A., Brooks, L.D., 
+Durbin, R.M., Gibbs, R.A., Hurles, M.E. and McVean, G.A.: \textbf{{A map of 
+human genome variation from population-scale sequencing}} \emph{Nature} 2010, 
+\textbf{467}:1061--1073.
+\end{thebibliography}
+\end{document}
